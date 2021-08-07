@@ -1,18 +1,15 @@
-## @package rt2_assignment2
-# \file user_interface.py
-# \brief this file allows the robot reach the goal 
-# \author Shahrzad Eskandari Majdar 
-# \version 0.1
-# \date 7/08/2021
-#
-#  \details
-#
-#  Services: <BR>
-#    /user_interface
-#
-#
-#  Description: <BR>
-#    This node implements an user interface 
+"""
+.. module:: user_interface
+   :platform: Unix
+   :synopsis: Python module for the user Interface
+
+.. moduleauthor:: Shahrzad Eskandari Majdar
+
+This node implements an user interface
+
+Service:
+   /user_interface
+"""
 
 
 
@@ -23,6 +20,18 @@ import time
 from rt2_assignment2.srv import Command
 
 def main():
+   
+    """
+    This function initializes the ROS node and waits for the
+    user to insert *start* or *stop* to control the robot, by relying on the
+    `rospy `_ module.
+
+    The user message is passed to the service``user_interface``,
+    advertised by :mod:`go_to_point`.
+    
+    """
+
+
     rospy.init_node('user_interface_node')
     rospy.wait_for_service('/user_interface')
     try:
