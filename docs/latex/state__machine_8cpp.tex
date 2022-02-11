@@ -1,0 +1,118 @@
+\hypertarget{state__machine_8cpp}{}\doxysection{/root/test2/src/rt2\+\_\+assignment2/src/state\+\_\+machine.cpp File Reference}
+\label{state__machine_8cpp}\index{/root/test2/src/rt2\_assignment2/src/state\_machine.cpp@{/root/test2/src/rt2\_assignment2/src/state\_machine.cpp}}
+
+
+This file implement a state machine that start and stops a go to point goal.  
+
+
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rt2\+\_\+assignment2/\+Command.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rt2\+\_\+assignment2/\+Position.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rt2\+\_\+assignment2/\+Random\+Position.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$actionlib/client/simple\+\_\+action\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/terminal\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$rt2\+\_\+assignment2/\+Position\+Action.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+Bool.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+Float32.\+h\char`\"{}}\newline
+Include dependency graph for state\+\_\+machine.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{state__machine_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{state__machine_8cpp_a2c80ed729eddcc1097aa64015d817484}{user\+\_\+interface}} (rt2\+\_\+assignment2\+::\+Command\+::\+Request \&req, rt2\+\_\+assignment2\+::\+Command\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em callback function for handling the request sent from the user interface \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{state__machine_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em main function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{state__machine_8cpp_ab376b87f96a574a793c03c53e75afec8}\label{state__machine_8cpp_ab376b87f96a574a793c03c53e75afec8}} 
+bool \mbox{\hyperlink{state__machine_8cpp_ab376b87f96a574a793c03c53e75afec8}{start}} = false
+\begin{DoxyCompactList}\small\item\em For setting the value of the request from the user interface. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{state__machine_8cpp_a7b41b5ac885385d5a2f18273038644e9}\label{state__machine_8cpp_a7b41b5ac885385d5a2f18273038644e9}} 
+bool {\bfseries not\+\_\+moving} = true
+\item 
+\mbox{\Hypertarget{state__machine_8cpp_a4e7b2b403f58b3a7ebedb4501612fae7}\label{state__machine_8cpp_a4e7b2b403f58b3a7ebedb4501612fae7}} 
+std\+\_\+msgs\+::\+Bool {\bfseries reached}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file implement a state machine that start and stops a go to point goal. 
+
+\begin{DoxyAuthor}{Author}
+Shahrzad Eskandari Majdar 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+11/02/2022
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em start} & boolean to know if to start of stop the go to point action\\
+\hline
+\end{DoxyParams}
+Services \+: ~\newline
+ ° /user\+\_\+interface ° /position\+\_\+server
+
+Action \+: ~\newline
+ /go\+\_\+to\+\_\+point
+
+Action Client\+: ~\newline
+ /go\+\_\+to\+\_\+point
+
+Description \+:
+
+This node is a server for the user interface, it receives what the user writes, and it start depending on it. If the client ask for the random position behaviour it calls the server \textquotesingle{}/random\+\_\+position\textquotesingle{} and it waits for it to be finished Also checks if the client requests the behaviour to stop. In that case, it cancels the previous goal and waits for the next command.\+while, it also sends information to the user\+\_\+interface node. It publishes a topic when a goal has been reached (T) or cancelled (F).whenevera goal is reached, it publishes on the topic \textquotesingle{}/time\textquotesingle{} the time in seconds between the request of the goal and the completion of it. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{state__machine_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{state__machine_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{state\_machine.cpp@{state\_machine.cpp}!main@{main}}
+\index{main@{main}!state\_machine.cpp@{state\_machine.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+main function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+always 0
+\end{DoxyReturn}
+The main funtion initializes the node, service and action client object and waits to receive a request to the initialized service. ~\newline
+ \mbox{\Hypertarget{state__machine_8cpp_a2c80ed729eddcc1097aa64015d817484}\label{state__machine_8cpp_a2c80ed729eddcc1097aa64015d817484}} 
+\index{state\_machine.cpp@{state\_machine.cpp}!user\_interface@{user\_interface}}
+\index{user\_interface@{user\_interface}!state\_machine.cpp@{state\_machine.cpp}}
+\doxysubsubsection{\texorpdfstring{user\_interface()}{user\_interface()}}
+{\footnotesize\ttfamily bool user\+\_\+interface (\begin{DoxyParamCaption}\item[{rt2\+\_\+assignment2\+::\+Command\+::\+Request \&}]{req,  }\item[{rt2\+\_\+assignment2\+::\+Command\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+
+
+callback function for handling the request sent from the user interface 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & the request sent from the client \\
+\hline
+{\em res} & the response to be sent from the server to the client \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+always true as this function cannot fail.
+\end{DoxyReturn}
+This function receives the request sent from the user interface client and set the value the start global variable. 
