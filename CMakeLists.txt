@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.0.2)
-project(rt2_assignment1)
+go_to_pointcmake_minimum_required(VERSION 3.0.2)
+project(rt2_assignment2)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,12 +8,11 @@ project(rt2_assignment1)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-geometry_msgs
+  actionlib 
+  actionlib_msgs 
+  nav_msgs
   roscpp
   rospy
-  std_msgs
-  actionlib
-  actionlib_msgs
   message_generation
 )
 
@@ -50,32 +49,31 @@ geometry_msgs
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+# Generate messages in the 'msg' folder
+#add_message_files(
+#  FILES
+#  
+#)
 
 ## Generate services in the 'srv' folder
  add_service_files(
    FILES
    Command.srv
+   Position.srv
    RandomPosition.srv
  )
 
 ## Generate actions in the 'action' folder
- add_action_files(
-   FILES
-   Gotopoint.action
-  )
-
+add_action_files(
+  FILES
+  Position.action
+)
 
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
- DEPENDENCIES
- actionlib_msgs
- geometry_msgs
+   DEPENDENCIES 
+   actionlib_msgs 
+   nav_msgs
  )
 
 ################################################
@@ -109,7 +107,7 @@ geometry_msgs
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES rt2_assignment1
+#  LIBRARIES rt2_assignment2
 #  CATKIN_DEPENDS roscpp rospy
 #  DEPENDS system_lib
 )
@@ -127,7 +125,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/rt2_assignment1.cpp
+#   src/${PROJECT_NAME}/rt2_assignment2.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -138,8 +136,8 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
- add_executable(position_service src/position_service.cpp)
- add_executable(state_machine src/state_machine.cpp)
+ add_executable(position_service_ src/position_service.cpp)
+ add_executable(state_machine_ src/state_machine.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -149,15 +147,15 @@ include_directories(
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
- add_dependencies(position_service ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
- add_dependencies(state_machine ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+ add_dependencies(position_service_ ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+ add_dependencies(state_machine_ ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
  
 ## Specify libraries to link a library or executable target against
- target_link_libraries(position_service
+ target_link_libraries(position_service_
    ${catkin_LIBRARIES}
  )
  
- target_link_libraries(state_machine
+ target_link_libraries(state_machine_
    ${catkin_LIBRARIES}
  )
 
@@ -208,10 +206,11 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_rt2_assignment1.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_rt2_assignment2.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
