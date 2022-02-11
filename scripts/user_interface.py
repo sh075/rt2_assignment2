@@ -2,7 +2,7 @@
 # \file user_interface.py
 # \brief this file allows the robot reach the goal 
 # \author Shahrzad Eskandari Majdar 
-# \version 0.1
+# \version 1.0
 # \date 7/08/2021
 #
 #  \details
