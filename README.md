@@ -1,8 +1,9 @@
-# First Assignment of the Research Track 2 course (Robotics Engineering / JEMARO, Unige)
+# RT2_Assignement2
 
-The package contains the nodes and the simulation environment for controlling a mobile robot in the Gazebo simulation environment.
-To launch the node, please run:
-```
-roslaunch rt2_assignment1 sim.launch
-```
+## Second Assignment of the Research Track 2 course (Robotics Engineering)
 
+Shahrzad Eskandari Majdar (5060737)
+
+The documentation can be found in here:
+
+[https://sh075.github.io/rt2_Assignment2/](https://sh075.github.io/rt2_Assignment2/)
