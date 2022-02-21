@@ -3,7 +3,7 @@ go_to_point/**
 * \brief This file implement a state machine that start and stops a go to point goal
 * \author Shahrzad Eskandari Majdar
 * \version 0.1
-* \date 07/08/2021
+* \date 11/02/2022
 *
 * \param start boolean to know if to start of stop the go to point action
 *
@@ -11,8 +11,8 @@ go_to_point/**
 *
 *
 * Services : <BR>
-* ° /user_interface
-* ° /position_server
+* آ° /user_interface
+* آ° /position_server
 * 
 * Action : <BR>
 *   /go_to_point
